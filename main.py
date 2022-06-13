@@ -5,13 +5,13 @@ import subprocess
 import colored_text
 
 # hold project name passed as a command line arguments
-project_name = sys.argv[1]
+project_name_without_index = sys.argv[1]
 
 # number of the project in the current directory
 project_index = counting_folders.count_folders_with_zfill(os.getcwd())
 
 # prefix project name with index
-project_name = project_index + '-' + project_name
+project_name = project_index + '-' + project_name_without_index
 
 # NOW PROJECT NAME IS READY TO BE USED
 # ------------------------------------
@@ -44,8 +44,12 @@ css_file.close()
 js_file = open("main.js", "w")
 js_file.close()
 
+# create README file -- and write project name in it
+readme_file = open("README.md", "w")
+readme_file.write(f"# {project_name_without_index}")
+readme_file.close()
 
-print(colored_text.make_green(f"created {html_file.name, css_file.name, js_file.name} successfully"))
+print(colored_text.make_green(f"created {html_file.name, css_file.name, js_file.name, readme_file.name} successfully"))
 
 # ALL FILES ARE READY TO BE ADDED AND commit
 
@@ -90,6 +94,19 @@ if commiting_js.returncode != 0:
     print(colored_text.make_red(f"something went wrong while commiting {js_file.name}"))
 else:
     print(colored_text.make_green(f"{js_file.name} has been commited successfully"))
+
+# -----------------------------------
+# README file
+adding_readme = subprocess.run(["git", "add", f"{readme_file.name}"], capture_output=True)
+
+if adding_readme.returncode != 0:
+    print(colored_text.make_red(f"something went wrong while adding {readme_file.name}"))
+
+commiting_readme = subprocess.run(["git", "commit", "-m", 'project notes'], capture_output=True)
+if commiting_readme.returncode != 0:
+    print(colored_text.make_red(f"something went wrong while commiting {readme_file.name}"))
+else:
+    print(colored_text.make_green(f"{readme_file.name} has been commited successfully"))
 
 # ------------------------------------
 # show success message
