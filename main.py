@@ -115,7 +115,7 @@ print("all files has been added and commited now they are ready to be pushed")
 # opening directory in vscode
 print("opening vscode to this directory...")
 
-opening_vscode = subprocess.run("code .", capture_output=True, shell=True)
+opening_vscode = subprocess.run("code ../", capture_output=True, shell=True)
 if opening_vscode.returncode != 0:
     print(colored_text.make_red("something went wrong while opening vscode"))
 else:
