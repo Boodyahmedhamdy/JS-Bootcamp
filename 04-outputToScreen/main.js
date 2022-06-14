@@ -11,6 +11,7 @@ document.write("this is a message from document.write()");
 
 
 // using console.log()
+// ---------------------------------
 console.log("message from console.log()");
 
 // using %c directive to make styles
@@ -21,9 +22,11 @@ console.log("styled message %cfrom console.log()\
 
 
 // using console.erorr()
+// ---------------------------------
 console.error("error message");
 
 // using console.table()
+// ---------------------------------
 console.table(["boody", "ahmed", "hamdy", "hassan", "nasr"]);
 
 
