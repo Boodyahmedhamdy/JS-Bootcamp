@@ -4,6 +4,30 @@ import sys
 import subprocess
 import colored_text
 
+def commit_file(file_name: str, commit_message: str):
+
+    commiting_file = subprocess.run(["git", "commit", "-m", commit_message], capture_output=True)
+    if commiting_file.returncode != 0:
+        print(colored_text.make_red(f"something went wrong while commiting {file_name}"))
+
+    else:
+        print(colored_text.make_green(f"{file_name} has been commited successfully"))
+
+
+def add_file(file_name: str):
+
+    adding_file = subprocess.run(["git", "add", f"{file_name}"], capture_output=True)
+    if adding_file.returncode != 0:
+        print(colored_text.make_red(f"something went wrong while adding {file_name}"))
+    else:
+        print(colored_text.make_green(f"{file_name} has been added successfully"))
+
+
+def add_and_commit_file(file_name: str, commit_message: str):
+    add_file(file_name)
+    commit_file(file_name, commit_message)
+
+
 # hold project name passed as a command line arguments
 project_name_without_index = sys.argv[1]
 
@@ -53,60 +77,16 @@ print(colored_text.make_green(f"created {html_file.name, css_file.name, js_file.
 
 # ALL FILES ARE READY TO BE ADDED AND commit
 
-# adding files
+# adding and commiting files
 # -----------------
-# ---------------------------------------
-# html file
-adding_html = subprocess.run(["git", "add", f"{html_file.name}"], capture_output=True)
 
-if adding_html.returncode != 0:
-    print(colored_text.make_red(f"something went wrong while adding {html_file.name}"))
-
-commiting_html = subprocess.run(["git", "commit", "-m", 'index file'], capture_output=True)
-if commiting_html.returncode != 0:
-    print(colored_text.make_red(f"something went wrong while commiting {html_file.name}"))
-
-else:
-    print(colored_text.make_green(f"{html_file.name} has been commited successfully"))
-
-# ------------------------------------
-# css file
-adding_css = subprocess.run(["git", "add", f"{css_file.name}"], capture_output=True)
-
-if adding_css.returncode != 0:
-    print(colored_text.make_red(f"something went wrong while adding {css_file.name}"))
-
-commiting_css = subprocess.run(["git", "commit", "-m", 'style file'], capture_output=True)
-if commiting_html.returncode != 0:
-    print(colored_text.make_red(f"something went wrong while commiting {css_file.name}"))
-else:
-    print(colored_text.make_green(f"{css_file.name} has been commited successfully"))
-
-# -------------------------------------
-# js file
-adding_js = subprocess.run(["git", "add", f"{js_file.name}"], capture_output=True)
-
-if adding_js.returncode != 0:
-    print(colored_text.make_red(f"something went wrong while adding {js_file.name}"))
-
-commiting_js = subprocess.run(["git", "commit", "-m", 'main js file'], capture_output=True)
-if commiting_js.returncode != 0:
-    print(colored_text.make_red(f"something went wrong while commiting {js_file.name}"))
-else:
-    print(colored_text.make_green(f"{js_file.name} has been commited successfully"))
-
-# -----------------------------------
-# README file
-adding_readme = subprocess.run(["git", "add", f"{readme_file.name}"], capture_output=True)
-
-if adding_readme.returncode != 0:
-    print(colored_text.make_red(f"something went wrong while adding {readme_file.name}"))
-
-commiting_readme = subprocess.run(["git", "commit", "-m", 'project notes'], capture_output=True)
-if commiting_readme.returncode != 0:
-    print(colored_text.make_red(f"something went wrong while commiting {readme_file.name}"))
-else:
-    print(colored_text.make_green(f"{readme_file.name} has been commited successfully"))
+try:
+    add_and_commit_file(html_file.name, "index file")
+    add_and_commit_file(css_file.name, "style file")
+    add_and_commit_file(js_file.name, "main js file")
+    add_and_commit_file(readme_file.name, "readme file")
+except Exception as e:
+    print(e)
 
 # ------------------------------------
 # show success message
