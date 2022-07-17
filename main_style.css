@@ -19,4 +19,41 @@ body {
     text-transform: capitalize;
 }
 
+/* main section contains everything in the page */
+.main-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    width: 90%;
+    min-height: 500px;
+
+    margin:20px auto ;
+    padding: 10px;
+
+    background-color: grey;
+    /* background-color: mediumpurple; */
+    box-shadow: 0 0 20px #333;
+
+    border: 1px solid white;
+}
+
+/* box contains data about something */
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    min-width: 250px;
+    min-height: 200px;
+
+    padding: 10px;
+    margin: 10px;
+
+    border-radius: 10px;
+
+    background-color: mediumpurple;
+    color: white;
+}
 
