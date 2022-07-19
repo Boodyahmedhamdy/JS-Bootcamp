@@ -31,11 +31,9 @@ body {
     margin:20px auto ;
     padding: 10px;
 
-    background-color: grey;
+    background-color: whitesmoke;
     /* background-color: mediumpurple; */
     box-shadow: 0 0 20px #333;
-
-    border: 1px solid white;
 }
 
 /* box contains data about something */
@@ -46,6 +44,7 @@ body {
     flex-direction: column;
 
     min-width: 250px;
+    max-width: 400px;
     min-height: 200px;
 
     padding: 10px;
@@ -55,5 +54,7 @@ body {
 
     background-color: mediumpurple;
     color: white;
+
+    text-align: center;
 }
 
