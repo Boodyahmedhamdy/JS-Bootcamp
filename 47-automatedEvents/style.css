@@ -1,0 +1,11 @@
+.inputs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+
+.inputs input {
+    max-width: 20px;
+    margin: 10px;
+}
